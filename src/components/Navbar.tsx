@@ -53,7 +53,7 @@ const Navbar = () => {
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://academie.spawoda.fr"
+            href="https://formationheadspapro.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-body text-sm tracking-widest uppercase text-primary hover:text-primary/80 transition-colors duration-300"
@@ -61,9 +61,7 @@ const Navbar = () => {
             Académie
           </a>
           <a
-            href="https://www.planity.com/spa-woda-head-spa-lyon-69009"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#soins"
             className="btn-solid-gold rounded-full"
           >
             Réserver
@@ -102,7 +100,7 @@ const Navbar = () => {
               ))}
               <div className="border-t border-border pt-4 mt-2 flex flex-col gap-3">
                 <a
-                  href="https://academie.spawoda.fr"
+                  href="https://formationheadspapro.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-body text-sm tracking-widest uppercase text-primary"
@@ -110,9 +108,7 @@ const Navbar = () => {
                   Devenir Praticien
                 </a>
                 <a
-                  href="https://www.planity.com/spa-woda-head-spa-lyon-69009"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#soins"
                   className="btn-solid-gold rounded-full text-center"
                 >
                   Réserver
