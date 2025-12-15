@@ -51,7 +51,7 @@ const translations = {
     "treatments.warning2": "Hommes & Femmes bienvenus",
     "treatments.warning3": "Enfants avec des poux non acceptés",
     "treatments.mostPopular": "Le plus populaire",
-    "treatments.comboSavings": "Économisez 15€ avec ce combo",
+    "treatments.comboSavings": "Combo -15€",
 
     // Treatment names & descriptions
     "treatment.rituel.name": "Rituel Spa Woda",
@@ -206,7 +206,7 @@ const translations = {
     "treatments.warning2": "Men & Women welcome",
     "treatments.warning3": "Children with lice not accepted",
     "treatments.mostPopular": "Most Popular",
-    "treatments.comboSavings": "Save €15 with this combo",
+    "treatments.comboSavings": "Combo -€15",
 
     // Treatment names & descriptions
     "treatment.rituel.name": "Spa Woda Ritual",
