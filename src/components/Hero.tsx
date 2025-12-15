@@ -17,17 +17,17 @@ const Hero = () => {
           <source src="/videos/hero-video.mov" type="video/mp4" />
         </video>
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        {/* Decorative line */}
+        {/* Decorative gold line */}
         <motion.div
           initial={{ width: 0 }}
-          animate={{ width: "5rem" }}
+          animate={{ width: "4rem" }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="gold-line mb-8"
+          className="h-[2px] bg-primary mb-10"
         />
 
         {/* Subtitle */}
@@ -35,7 +35,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="font-body text-xs md:text-sm tracking-[0.3em] uppercase text-primary mb-6"
+          className="font-body text-xs md:text-sm tracking-[0.4em] uppercase text-primary mb-8"
         >
           L'Institut Spa Woda
         </motion.p>
@@ -45,31 +45,51 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-foreground mb-4 max-w-4xl"
+          className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-foreground mb-2 max-w-4xl"
         >
-          L'Art du Head Spa Japonais à Lyon.
+          L'Art du Head Spa Japonais.
         </motion.h1>
 
-        {/* Italic Subheadline */}
+        {/* Italic Gold Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-primary mb-12"
+          className="font-heading text-3xl md:text-4xl lg:text-5xl italic text-primary mb-6"
         >
-          Un voyage sensoriel par Yohaqîne Chopin.
+          Un voyage sensoriel.
         </motion.p>
 
-        {/* CTA Button */}
-        <motion.a
-          href="#soins"
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="font-body text-sm md:text-base text-foreground/60 mb-10 max-w-lg"
+        >
+          Découvrez l'excellence du Head Spa à Lyon par Yohaqîne Chopin.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="btn-glass-gold rounded-full animate-float"
+          className="flex flex-col sm:flex-row gap-4"
         >
-          Réserver un Soin
-        </motion.a>
+          <a
+            href="#soins"
+            className="px-8 py-4 bg-primary text-background font-body text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300"
+          >
+            Réserver un Soin
+          </a>
+          <a
+            href="#institut"
+            className="px-8 py-4 border border-foreground/30 text-foreground font-body text-sm tracking-widest uppercase hover:border-primary hover:text-primary transition-all duration-300"
+          >
+            Découvrir l'Institut
+          </a>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}
@@ -80,7 +100,7 @@ const Hero = () => {
         transition={{ duration: 1, delay: 1.5 }}
         className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
       >
-        <span className="font-body text-xs tracking-widest uppercase text-foreground/50">
+        <span className="font-body text-xs tracking-[0.3em] uppercase text-foreground/50">
           Découvrir
         </span>
         <motion.div
