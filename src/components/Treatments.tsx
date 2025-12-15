@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Clock, AlertCircle } from "lucide-react";
-import BookingModal from "./BookingModal";
+import { useRef } from "react";
+import { Clock, AlertCircle, Phone } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 const treatments = [
   {
@@ -62,13 +62,6 @@ const treatments = [
 const Treatments = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTreatment, setSelectedTreatment] = useState<string | undefined>();
-
-  const handleBooking = (treatmentName: string) => {
-    setSelectedTreatment(treatmentName);
-    setIsModalOpen(true);
-  };
 
   return (
     <section id="soins" className="py-24 md:py-32 bg-volcanic-light" ref={ref}>
@@ -130,12 +123,38 @@ const Treatments = () => {
               </div>
 
               {/* CTA */}
-              <button
-                onClick={() => handleBooking(treatment.name)}
-                className="w-full text-center py-3 border border-primary/30 rounded-full text-sm tracking-wider uppercase text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-300"
-              >
-                Réserver
-              </button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    className="w-full text-center py-3 border border-primary/30 rounded-full text-sm tracking-wider uppercase text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-300"
+                  >
+                    Réserver
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-72 bg-card border-border/50 p-6" sideOffset={8}>
+                  <div className="text-center">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                    <h4 className="font-heading text-lg text-foreground mb-1">
+                      Réserver par téléphone
+                    </h4>
+                    <p className="text-muted-foreground text-xs mb-4">
+                      {treatment.name}
+                    </p>
+                    <a
+                      href="tel:+33612345678"
+                      className="btn-solid-gold rounded-full text-sm flex items-center justify-center gap-2 w-full py-2"
+                    >
+                      <Phone className="w-4 h-4" />
+                      06 12 34 56 78
+                    </a>
+                    <p className="text-xs text-muted-foreground mt-3">
+                      Du lundi au samedi, 9h - 19h
+                    </p>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </motion.div>
           ))}
         </div>
@@ -159,12 +178,6 @@ const Treatments = () => {
         </motion.div>
       </div>
 
-      {/* Booking Modal */}
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        treatmentName={selectedTreatment}
-      />
     </section>
   );
 };
