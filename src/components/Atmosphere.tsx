@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { X, ExternalLink, Tag } from "lucide-react";
 import seoniProduct from "@/assets/seoni-product.jpg";
 import justeParisProduct from "@/assets/juste-paris-product.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -17,6 +18,8 @@ interface ProductModalProps {
 }
 
 const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -44,7 +47,7 @@ const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
             </button>
 
             <h3 className="font-heading text-2xl text-foreground mb-2">{product.name}</h3>
-            <p className="text-muted-foreground text-sm mb-6">Partenaire Spa Woda</p>
+            <p className="text-muted-foreground text-sm mb-6">{t("atmosphere.partnerLabel")}</p>
 
             <div className="space-y-4">
               <a
@@ -55,14 +58,14 @@ const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
               >
                 <ExternalLink className="w-5 h-5 text-primary" />
                 <span className="text-foreground group-hover:text-primary transition-colors">
-                  Visiter le site
+                  {t("atmosphere.visitSite")}
                 </span>
               </a>
 
               <div className="p-4 rounded-xl bg-volcanic border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Tag className="w-4 h-4 text-primary" />
-                  <span className="text-xs uppercase tracking-wider text-primary">Code Promo</span>
+                  <span className="text-xs uppercase tracking-wider text-primary">{t("atmosphere.promoCodeLabel")}</span>
                 </div>
                 <p className="font-heading text-xl text-foreground">{product.promoCode}</p>
                 <p className="text-sm text-muted-foreground mt-1">{product.discount}</p>
@@ -78,6 +81,7 @@ const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
 const Atmosphere = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
   const [selectedProduct, setSelectedProduct] = useState<null | {
     name: string;
     website: string;
@@ -91,14 +95,14 @@ const Atmosphere = () => {
       image: seoniProduct,
       website: "https://getseoni.com/pages/pommeau-de-douche-page",
       promoCode: "SPAWODA10",
-      discount: "-10% sur votre commande",
+      discount: t("atmosphere.discount"),
     },
     {
       name: "Juste Paris",
       image: justeParisProduct,
       website: "https://juste.paris",
       promoCode: "SPAWODA",
-      discount: "-10% sur votre commande",
+      discount: t("atmosphere.discount"),
     },
   ];
 
@@ -114,10 +118,10 @@ const Atmosphere = () => {
         >
           <div className="gold-line mb-8" />
           <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">
-            L'Expérience
+            {t("atmosphere.label")}
           </p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
-            Une <span className="italic text-primary">Atmosphère</span> Unique
+            {t("atmosphere.title")} <span className="italic text-primary">{t("atmosphere.titleHighlight")}</span> {t("atmosphere.titleEnd")}
           </h2>
         </motion.div>
 
@@ -143,10 +147,10 @@ const Atmosphere = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="font-heading text-2xl md:text-3xl text-foreground">
-                  Immersion <span className="italic text-primary">sensorielle</span>
+                  {t("atmosphere.videoCaption")} <span className="italic text-primary">{t("atmosphere.videoCaptionHighlight")}</span>
                 </p>
                 <p className="mt-2 text-muted-foreground text-sm font-light">
-                  Lumières tamisées, sons apaisants, parfums envoûtants.
+                  {t("atmosphere.videoSubCaption")}
                 </p>
               </div>
             </motion.div>
@@ -159,28 +163,23 @@ const Atmosphere = () => {
               className="flex flex-col"
             >
               <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-6">
-                Un <span className="italic text-primary">voyage sensoriel</span> d'exception
+                {t("atmosphere.rightTitle")} <span className="italic text-primary">{t("atmosphere.rightTitleHighlight")}</span> {t("atmosphere.rightTitleEnd")}
               </h3>
               <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Plongez dans une expérience unique où chaque détail a été pensé pour votre bien-être. 
-                Lumières tamisées, sons apaisants et parfums envoûtants créent une bulle de sérénité 
-                propice à la détente profonde.
+                {t("atmosphere.rightP1")}
               </p>
               <p className="text-muted-foreground font-light leading-relaxed mb-8">
-                Nous utilisons exclusivement des produits d'exception, sélectionnés avec soin auprès 
-                de nos partenaires <span className="text-primary">Seoni</span> et <span className="text-primary">Juste Paris</span>. 
-                Ces marques partagent nos valeurs de qualité et de respect, pour une expérience 
-                authentique et bienfaisante.
+                {t("atmosphere.rightP2")} <span className="text-primary">Seoni</span> et <span className="text-primary">Juste Paris</span>{t("atmosphere.rightP2End")}
               </p>
 
               {/* Partners Section */}
               <div className="flex flex-col gap-4">
                 <div className="text-left">
                   <p className="font-heading text-xl md:text-2xl text-foreground mb-2">
-                    Nos <span className="italic text-primary">Partenaires</span>
+                    {t("atmosphere.partnersTitle")} <span className="italic text-primary">{t("atmosphere.partnersTitleHighlight")}</span>
                   </p>
                   <p className="text-muted-foreground text-sm font-light">
-                    Des produits d'exception sélectionnés avec soin
+                    {t("atmosphere.partnersSubtitle")}
                   </p>
                 </div>
 
@@ -207,7 +206,7 @@ const Atmosphere = () => {
                           {product.name}
                         </p>
                         <p className="text-xs text-primary tracking-wider uppercase">
-                          Code Promo -10%
+                          {t("atmosphere.promoCode")}
                         </p>
                       </div>
                     </motion.button>

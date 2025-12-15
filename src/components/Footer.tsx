@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Instagram, Youtube } from "lucide-react";
 import LegalModal from "./LegalModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const [legalModalOpen, setLegalModalOpen] = useState(false);
   const [legalModalType, setLegalModalType] = useState<"mentions" | "cgv">("mentions");
+  const { t } = useLanguage();
 
   const openLegalModal = (type: "mentions" | "cgv") => {
     setLegalModalType(type);
@@ -22,9 +24,9 @@ const Footer = () => {
               Spa <span className="italic text-primary">Woda</span>
             </h3>
             <p className="text-muted-foreground text-sm font-light leading-relaxed mb-6">
-              L'art du Head Spa Japonais à Lyon.
+              {t("footer.tagline")}
               <br />
-              Un sanctuaire de sérénité.
+              {t("footer.tagline2")}
             </p>
             <div className="flex gap-4">
               <a
@@ -62,7 +64,7 @@ const Footer = () => {
           {/* Contact */}
           <div>
             <h4 className="font-body text-xs tracking-widest uppercase text-primary mb-6">
-              Contact
+              {t("footer.contact")}
             </h4>
             <div className="space-y-3 text-muted-foreground text-sm font-light">
               <p>Spa Woda</p>
@@ -74,7 +76,7 @@ const Footer = () => {
           {/* Links */}
           <div>
             <h4 className="font-body text-xs tracking-widest uppercase text-primary mb-6">
-              Liens
+              {t("footer.links")}
             </h4>
             <div className="space-y-3">
               <a
@@ -83,19 +85,19 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors"
               >
-                Devenir Praticien
+                {t("footer.becomePractitioner")}
               </a>
               <button
                 onClick={() => openLegalModal("mentions")}
                 className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors text-left"
               >
-                Mentions Légales
+                {t("footer.legalNotice")}
               </button>
               <button
                 onClick={() => openLegalModal("cgv")}
                 className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors text-left"
               >
-                CGV
+                {t("footer.terms")}
               </button>
             </div>
           </div>
@@ -106,10 +108,10 @@ const Footer = () => {
       <div className="border-t border-border py-6">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-xs">
-            © {new Date().getFullYear()} Spa Woda. Tous droits réservés.
+            © {new Date().getFullYear()} Spa Woda. {t("footer.copyright")}
           </p>
           <p className="text-muted-foreground text-xs">
-            Conçu avec <span className="text-primary">♥</span> à Lyon
+            {t("footer.madeWith")} <span className="text-primary">♥</span> {t("footer.inLyon")}
           </p>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Video Background */}
@@ -37,7 +40,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="font-body text-xs md:text-sm tracking-[0.3em] uppercase text-primary mb-6"
         >
-          L'Institut Spa Woda
+          {t("hero.subtitle")}
         </motion.p>
 
         {/* Main Headline */}
@@ -47,7 +50,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="font-heading text-5xl md:text-7xl lg:text-8xl font-light text-foreground mb-4 max-w-4xl"
         >
-          L'Art du Head Spa Japonais à Lyon.
+          {t("hero.title")}
         </motion.h1>
 
         {/* Italic Subheadline */}
@@ -57,7 +60,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.9 }}
           className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-primary mb-12"
         >
-          Un voyage sensoriel par Yohaqîne Chopin.
+          {t("hero.tagline")}
         </motion.p>
 
         {/* CTA Button */}
@@ -68,7 +71,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="btn-glass-gold rounded-full animate-float"
         >
-          Réserver un Soin
+          {t("hero.cta")}
         </motion.a>
       </div>
 
@@ -81,7 +84,7 @@ const Hero = () => {
         className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
       >
         <span className="font-body text-xs tracking-widest uppercase text-foreground/50">
-          Découvrir
+          {t("hero.discover")}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

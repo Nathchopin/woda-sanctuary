@@ -3,65 +3,67 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Clock, AlertCircle, Phone } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-
-const treatments = [
-  {
-    name: "Rituel Spa Woda",
-    description: "Le déroulé complet du Head Spa : accueil & diagnostic, soin du cuir chevelu, massage bien-être, soin du visage, rituel capillaire et finitions beauté.",
-    duration: "2h",
-    price: "145€",
-    highlight: true,
-    badge: "Le plus populaire",
-  },
-  {
-    name: "Massage Crânien & Californien",
-    description: "Offrez à votre esprit une pause profonde grâce à notre massage crânien inspiré du Head Spa Japonais, combiné au massage californien enveloppant.",
-    duration: "1h30",
-    price: "100€",
-    highlight: true,
-    badge: "-15€",
-  },
-  {
-    name: "Massage Crânien",
-    description: "En stimulant doucement le cuir chevelu, ce massage aide à relâcher les muscles et à apaiser l'esprit.",
-    duration: "30min",
-    price: "30€",
-  },
-  {
-    name: "Massage Californien",
-    description: "Un modelage doux et enveloppant pour favoriser la relaxation et la reconnexion à soi.",
-    duration: "1h",
-    price: "85€",
-  },
-  {
-    name: "Massage Signature Spa Woda",
-    description: "L'Essence du Bien-Être sur Mesure. Un soin entièrement personnalisé qui allie douceur et précision, inspiré de techniques japonaises.",
-    duration: "1h30",
-    price: "120€",
-  },
-  {
-    name: "Massage Ayurvédique",
-    description: "Inspiré de la tradition indienne, ce massage rééquilibre les énergies et revitalise le corps.",
-    duration: "1h",
-    price: "90€",
-  },
-  {
-    name: "Massage Suédois",
-    description: "Idéal pour dénouer les tensions musculaires et activer la circulation grâce à des manœuvres toniques.",
-    duration: "1h",
-    price: "100€",
-  },
-  {
-    name: "Massage Polynésien",
-    description: "Inspiré des traditions ancestrales de Tahiti, ce massage utilise de longs mouvements fluides rappelant le va-et-vient des vagues.",
-    duration: "1h",
-    price: "90€",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Treatments = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
+
+  const treatments = [
+    {
+      nameKey: "treatment.rituel.name",
+      descKey: "treatment.rituel.desc",
+      duration: "2h",
+      price: "145€",
+      highlight: true,
+      badgeKey: "treatments.mostPopular",
+    },
+    {
+      nameKey: "treatment.cranienCalif.name",
+      descKey: "treatment.cranienCalif.desc",
+      duration: "1h30",
+      price: "100€",
+      highlight: true,
+      badge: "-15€",
+    },
+    {
+      nameKey: "treatment.cranien.name",
+      descKey: "treatment.cranien.desc",
+      duration: "30min",
+      price: "30€",
+    },
+    {
+      nameKey: "treatment.californien.name",
+      descKey: "treatment.californien.desc",
+      duration: "1h",
+      price: "85€",
+    },
+    {
+      nameKey: "treatment.signature.name",
+      descKey: "treatment.signature.desc",
+      duration: "1h30",
+      price: "120€",
+    },
+    {
+      nameKey: "treatment.ayurvedique.name",
+      descKey: "treatment.ayurvedique.desc",
+      duration: "1h",
+      price: "90€",
+    },
+    {
+      nameKey: "treatment.suedois.name",
+      descKey: "treatment.suedois.desc",
+      duration: "1h",
+      price: "100€",
+    },
+    {
+      nameKey: "treatment.polynesien.name",
+      descKey: "treatment.polynesien.desc",
+      duration: "1h",
+      price: "90€",
+    },
+  ];
 
   return (
     <section id="soins" className="py-24 md:py-32 bg-volcanic-light" ref={ref}>
@@ -75,10 +77,10 @@ const Treatments = () => {
         >
           <div className="gold-line mb-8" />
           <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">
-            Nos Soins
+            {t("treatments.label")}
           </p>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
-            Les <span className="italic text-primary">Rituels</span> Spa Woda
+            {t("treatments.title")} <span className="italic text-primary">{t("treatments.titleHighlight")}</span> {t("treatments.titleEnd")}
           </h2>
         </motion.div>
 
@@ -86,7 +88,7 @@ const Treatments = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {treatments.map((treatment, index) => (
             <motion.div
-              key={treatment.name}
+              key={treatment.nameKey}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.08 }}
@@ -97,18 +99,18 @@ const Treatments = () => {
               {/* Card Header */}
               <div className="flex items-start justify-between mb-4">
                 <h3 className="font-heading text-xl md:text-2xl text-foreground pr-2">
-                  {treatment.name}
+                  {t(treatment.nameKey)}
                 </h3>
-                {treatment.badge && (
+                {(treatment.badgeKey || treatment.badge) && (
                   <span className="text-xs tracking-wider uppercase text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
-                    {treatment.badge}
+                    {treatment.badgeKey ? t(treatment.badgeKey) : treatment.badge}
                   </span>
                 )}
               </div>
 
               {/* Description */}
               <p className="text-muted-foreground text-sm font-light leading-relaxed mb-6 flex-grow">
-                {treatment.description}
+                {t(treatment.descKey)}
               </p>
 
               {/* Duration & Price */}
@@ -128,7 +130,7 @@ const Treatments = () => {
                   <button
                     className="w-full text-center py-3 border border-primary/30 rounded-full text-sm tracking-wider uppercase text-foreground hover:bg-primary hover:text-background hover:border-primary transition-all duration-300"
                   >
-                    Réserver
+                    {t("treatments.book")}
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-72 bg-card border-border/50 p-6" sideOffset={8}>
@@ -137,10 +139,10 @@ const Treatments = () => {
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
                     <h4 className="font-heading text-lg text-foreground mb-1">
-                      Réserver par téléphone
+                      {t("treatments.bookByPhone")}
                     </h4>
                     <p className="text-muted-foreground text-xs mb-4">
-                      {treatment.name}
+                      {t(treatment.nameKey)}
                     </p>
                     <a
                       href="tel:+33612345678"
@@ -150,7 +152,7 @@ const Treatments = () => {
                       06 12 34 56 78
                     </a>
                     <p className="text-xs text-muted-foreground mt-3">
-                      Du lundi au samedi, 9h - 19h
+                      {t("treatments.openingHours")}
                     </p>
                   </div>
                 </PopoverContent>
@@ -168,16 +170,15 @@ const Treatments = () => {
         >
           <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div className="text-sm text-muted-foreground">
-            <span className="text-foreground font-medium">Important :</span>
+            <span className="text-foreground font-medium">{t("treatments.important")}</span>
             <ul className="list-disc list-inside mt-1 space-y-1">
-              <li>Pas de coloration, Botox ou décoloration une semaine avant et après une séance</li>
-              <li>Hommes & Femmes bienvenus</li>
-              <li>Enfants avec des poux non acceptés</li>
+              <li>{t("treatments.warning1")}</li>
+              <li>{t("treatments.warning2")}</li>
+              <li>{t("treatments.warning3")}</li>
             </ul>
           </div>
         </motion.div>
       </div>
-
     </section>
   );
 };
