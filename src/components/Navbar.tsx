@@ -17,6 +17,7 @@ const Navbar = () => {
   const navLinks = [
     { label: "Soins", href: "#soins" },
     { label: "L'Institut", href: "#institut" },
+    { label: "L'Expérience", href: "#experience" },
     { label: "Formation Head Spa", href: "#formation" },
     { label: "Contact", href: "#contact" },
   ];
