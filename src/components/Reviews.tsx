@@ -107,7 +107,7 @@ const Reviews = () => {
             }}
             transition={{
               x: {
-                duration: 20,
+                duration: 160,
                 repeat: Infinity,
                 ease: "linear",
               },
