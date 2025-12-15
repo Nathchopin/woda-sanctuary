@@ -121,16 +121,15 @@ const Atmosphere = () => {
           </h2>
         </motion.div>
 
-        {/* New Layout: Text + Video on top, Products at bottom-right */}
+        {/* Layout: Text + Partners left, Video right */}
         <div className="max-w-6xl mx-auto">
-          {/* Top Row: Text left, Video right */}
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Text Description */}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            {/* Left Column: Text + Partners */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col justify-center"
+              className="flex flex-col"
             >
               <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-6">
                 Un <span className="italic text-primary">voyage sensoriel</span> d'exception
@@ -140,15 +139,57 @@ const Atmosphere = () => {
                 Lumières tamisées, sons apaisants et parfums envoûtants créent une bulle de sérénité 
                 propice à la détente profonde.
               </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
+              <p className="text-muted-foreground font-light leading-relaxed mb-8">
                 Nous utilisons exclusivement des produits d'exception, sélectionnés avec soin auprès 
                 de nos partenaires <span className="text-primary">Seoni</span> et <span className="text-primary">Juste Paris</span>. 
                 Ces marques partagent nos valeurs de qualité et de respect, pour une expérience 
                 authentique et bienfaisante.
               </p>
+
+              {/* Partners Section */}
+              <div className="flex flex-col gap-4">
+                <div className="text-left">
+                  <p className="font-heading text-xl md:text-2xl text-foreground mb-2">
+                    Nos <span className="italic text-primary">Partenaires</span>
+                  </p>
+                  <p className="text-muted-foreground text-sm font-light">
+                    Des produits d'exception sélectionnés avec soin
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {products.map((product, index) => (
+                    <motion.button
+                      key={product.name}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedProduct(product)}
+                      className="rounded-2xl overflow-hidden border border-border relative aspect-square group cursor-pointer"
+                    >
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                      <div className="absolute inset-0 flex flex-col items-center justify-end p-4">
+                        <p className="font-heading text-lg md:text-xl text-foreground mb-1">
+                          {product.name}
+                        </p>
+                        <p className="text-xs text-primary tracking-wider uppercase">
+                          Code Promo -10%
+                        </p>
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
             </motion.div>
 
-            {/* Video Box */}
+            {/* Right Column: Video */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -174,59 +215,6 @@ const Atmosphere = () => {
                 </p>
               </div>
             </motion.div>
-          </div>
-
-          {/* Bottom Row: Products aligned to the right */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Empty left column for alignment */}
-            <div className="hidden md:block" />
-
-            {/* Products on the right */}
-            <div className="flex flex-col gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-center md:text-left"
-              >
-                <p className="font-heading text-xl md:text-2xl text-foreground mb-2">
-                  Nos <span className="italic text-primary">Partenaires</span>
-                </p>
-                <p className="text-muted-foreground text-sm font-light">
-                  Des produits d'exception sélectionnés avec soin
-                </p>
-              </motion.div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {products.map((product, index) => (
-                  <motion.button
-                    key={product.name}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setSelectedProduct(product)}
-                    className="rounded-2xl overflow-hidden border border-border relative aspect-square group cursor-pointer"
-                  >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-end p-4">
-                      <p className="font-heading text-lg md:text-xl text-foreground mb-1">
-                        {product.name}
-                      </p>
-                      <p className="text-xs text-primary tracking-wider uppercase">
-                        Code Promo -10%
-                      </p>
-                    </div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
