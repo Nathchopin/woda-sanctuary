@@ -25,7 +25,8 @@ const Treatments = () => {
       duration: "1h30",
       price: "100€",
       highlight: true,
-      badge: "-15€",
+      badgeKey: "treatments.comboSavings",
+      originalPrice: "115€",
     },
     {
       nameKey: "treatment.cranien.name",
@@ -101,9 +102,9 @@ const Treatments = () => {
                 <h3 className="font-heading text-xl md:text-2xl text-foreground pr-2">
                   {t(treatment.nameKey)}
                 </h3>
-                {(treatment.badgeKey || treatment.badge) && (
+                {treatment.badgeKey && (
                   <span className="text-xs tracking-wider uppercase text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
-                    {treatment.badgeKey ? t(treatment.badgeKey) : treatment.badge}
+                    {t(treatment.badgeKey)}
                   </span>
                 )}
               </div>
@@ -119,9 +120,16 @@ const Treatments = () => {
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">{treatment.duration}</span>
                 </div>
-                <span className="font-heading text-2xl text-primary">
-                  {treatment.price}
-                </span>
+                <div className="text-right">
+                  {treatment.originalPrice && (
+                    <span className="text-sm text-muted-foreground line-through mr-2">
+                      {treatment.originalPrice}
+                    </span>
+                  )}
+                  <span className="font-heading text-2xl text-primary">
+                    {treatment.price}
+                  </span>
+                </div>
               </div>
 
               {/* CTA */}
