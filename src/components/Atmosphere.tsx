@@ -89,7 +89,7 @@ const Atmosphere = () => {
     {
       name: "Seoni",
       image: seoniProduct,
-      website: "https://getseoni.com",
+      website: "https://getseoni.com/pages/pommeau-de-douche-page",
       promoCode: "SPAWODA10",
       discount: "-10% sur votre commande",
     },
@@ -121,79 +121,111 @@ const Atmosphere = () => {
           </h2>
         </motion.div>
 
-        {/* New Layout: Video + Products side by side */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Video Box - Smaller */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="rounded-2xl overflow-hidden border border-border relative aspect-[4/5]"
-          >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="/videos/environment-spa.mov" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <p className="font-heading text-2xl md:text-3xl text-foreground">
-                Immersion <span className="italic text-primary">sensorielle</span>
-              </p>
-              <p className="mt-2 text-muted-foreground text-sm font-light">
-                Lumières tamisées, sons apaisants, parfums envoûtants.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Products Grid */}
-          <div className="flex flex-col gap-6">
+        {/* New Layout: Text + Video on top, Products at bottom-right */}
+        <div className="max-w-6xl mx-auto">
+          {/* Top Row: Text left, Video right */}
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            {/* Text Description */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-center md:text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col justify-center"
             >
-              <p className="font-heading text-xl md:text-2xl text-foreground mb-2">
-                Nos <span className="italic text-primary">Partenaires</span>
+              <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-6">
+                Un <span className="italic text-primary">voyage sensoriel</span> d'exception
+              </h3>
+              <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                Plongez dans une expérience unique où chaque détail a été pensé pour votre bien-être. 
+                Lumières tamisées, sons apaisants et parfums envoûtants créent une bulle de sérénité 
+                propice à la détente profonde.
               </p>
-              <p className="text-muted-foreground text-sm font-light">
-                Des produits d'exception sélectionnés avec soin
+              <p className="text-muted-foreground font-light leading-relaxed">
+                Nous utilisons exclusivement des produits d'exception, sélectionnés avec soin auprès 
+                de nos partenaires <span className="text-primary">Seoni</span> et <span className="text-primary">Juste Paris</span>. 
+                Ces marques partagent nos valeurs de qualité et de respect, pour une expérience 
+                authentique et bienfaisante.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 gap-4 flex-1">
-              {products.map((product, index) => (
-                <motion.button
-                  key={product.name}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setSelectedProduct(product)}
-                  className="rounded-2xl overflow-hidden border border-border relative aspect-square group cursor-pointer"
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4">
-                    <p className="font-heading text-lg md:text-xl text-foreground mb-1">
-                      {product.name}
-                    </p>
-                    <p className="text-xs text-primary tracking-wider uppercase">
-                      Code Promo -10%
-                    </p>
-                  </div>
-                </motion.button>
-              ))}
+            {/* Video Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="rounded-2xl overflow-hidden border border-border relative aspect-[4/5]"
+            >
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/environment-spa.mov" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="font-heading text-2xl md:text-3xl text-foreground">
+                  Immersion <span className="italic text-primary">sensorielle</span>
+                </p>
+                <p className="mt-2 text-muted-foreground text-sm font-light">
+                  Lumières tamisées, sons apaisants, parfums envoûtants.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Row: Products aligned to the right */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Empty left column for alignment */}
+            <div className="hidden md:block" />
+
+            {/* Products on the right */}
+            <div className="flex flex-col gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-center md:text-left"
+              >
+                <p className="font-heading text-xl md:text-2xl text-foreground mb-2">
+                  Nos <span className="italic text-primary">Partenaires</span>
+                </p>
+                <p className="text-muted-foreground text-sm font-light">
+                  Des produits d'exception sélectionnés avec soin
+                </p>
+              </motion.div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {products.map((product, index) => (
+                  <motion.button
+                    key={product.name}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSelectedProduct(product)}
+                    className="rounded-2xl overflow-hidden border border-border relative aspect-square group cursor-pointer"
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-end p-4">
+                      <p className="font-heading text-lg md:text-xl text-foreground mb-1">
+                        {product.name}
+                      </p>
+                      <p className="text-xs text-primary tracking-wider uppercase">
+                        Code Promo -10%
+                      </p>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
