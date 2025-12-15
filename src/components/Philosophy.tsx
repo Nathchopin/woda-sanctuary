@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Philosophy = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <section id="institut" className="py-24 md:py-32 bg-background" ref={ref}>
@@ -47,32 +49,19 @@ const Philosophy = () => {
             <div className="gold-line mb-8 lg:mx-0" />
 
             <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">
-              L'Institut
+              {t("philosophy.label")}
             </p>
 
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-foreground mb-6">
-              Un <span className="italic text-primary">Sanctuaire</span> de Sérénité
+              {t("philosophy.title")} <span className="italic text-primary">{t("philosophy.titleHighlight")}</span> {t("philosophy.titleEnd")}
             </h2>
 
             <div className="space-y-5 text-muted-foreground font-light leading-relaxed">
+              <p>{t("philosophy.p1")}</p>
               <p>
-                Bienvenue chez Spa Woda, où l'art ancestral du Head Spa Japonais 
-                rencontre l'excellence française. Fondé par Yohaqîne Chopin, 
-                professionnelle passionnée issue du monde du spa hôtelier, 
-                notre institut est un havre de paix au cœur de Lyon.
+                {t("philosophy.p2")} <span className="italic-gold">{t("philosophy.p2Highlight")}</span>.
               </p>
-              <p>
-                Chaque soin est une expérience sur-mesure, utilisant des produits 
-                nobles et biologiques : lait d'ânesse, huiles précieuses, et 
-                rituels traditionnels japonais. Ici, nous ne proposons pas 
-                simplement des soins — nous offrons un voyage sensoriel vers 
-                la <span className="italic-gold">détente absolue</span>.
-              </p>
-              <p>
-                Notre philosophie Wabi-Sabi célèbre la beauté de l'imperfection 
-                et l'harmonie entre le corps et l'esprit. Laissez-vous porter 
-                par la douceur de nos rituels.
-              </p>
+              <p>{t("philosophy.p3")}</p>
             </div>
 
             <motion.a
@@ -81,7 +70,7 @@ const Philosophy = () => {
               whileTap={{ scale: 0.98 }}
               className="inline-block mt-10 btn-glass-gold rounded-full"
             >
-              Découvrir nos Soins
+              {t("philosophy.cta")}
             </motion.a>
           </motion.div>
         </div>

@@ -1,58 +1,34 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { Star } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const reviews = [
-  {
-    name: "Souad E.",
-    text: "Yohaqîne est une femme en or. Ambiance cocooning, massage parfait, un professionnalisme et une gentillesse rare. Accueillie comme une reine !",
-    date: "il y a 3 mois",
-  },
-  {
-    name: "Diane G.",
-    text: "Un très grand merci pour le soin. Au travers du rituel Osaka, j'ai vécu un instant précieux coupé du temps. Confiante et apaisée.",
-    date: "il y a 2 mois",
-  },
-  {
-    name: "Linda R.",
-    text: "Prix abordable, c'est mon 2e passage pour un massage crânien. Résultats : repousse, plus de démangeaisons, cheveux sains et brillants !",
-    date: "il y a 6 mois",
-  },
-  {
-    name: "Gael G.",
-    text: "Un moment incroyable grâce à Yohaqîne. Du diagnostic à la séance, elle a toujours été pleine de douceur et à l'écoute.",
-    date: "il y a 6 mois",
-  },
-  {
-    name: "Léane S.",
-    text: "Époustouflant ! La cabine de head spa est très jolie, le soin merveilleux et très relaxant. Pure douceur et brillance extrême.",
-    date: "il y a 6 mois",
-  },
-  {
-    name: "Chlo C.",
-    text: "Professionnalisme, douceur et extrêmement empathie. Elle saura répondre à vos besoins et apaiser votre esprit. Moment de détente absolu.",
-    date: "il y a 1 an",
-  },
-  {
-    name: "Sophie H.",
-    text: "Moment incroyable, l'accueil est chaleureux. Les odeurs des produits sont divines. Mes cheveux n'ont jamais été aussi beaux !",
-    date: "il y a 9 mois",
-  },
-  {
-    name: "Léa A.",
-    text: "Superbe expérience ! Prestation de qualité, ambiance cocooning et produits naturels. Je recommande vivement pour une parenthèse bien-être.",
-    date: "il y a 8 mois",
-  },
+const reviewNames = [
+  "Souad E.",
+  "Diane G.",
+  "Linda R.",
+  "Gael G.",
+  "Léane S.",
+  "Chlo C.",
+  "Sophie H.",
+  "Léa A.",
 ];
-
-// Duplicate reviews for seamless loop
-const duplicatedReviews = [...reviews, ...reviews];
 
 const Reviews = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isPaused, setIsPaused] = useState(false);
+  const { t } = useLanguage();
+
+  const reviews = reviewNames.map((name, index) => ({
+    name,
+    text: t(`review.${index + 1}.text`),
+    date: t(`review.${index + 1}.date`),
+  }));
+
+  // Duplicate reviews for seamless loop
+  const duplicatedReviews = [...reviews, ...reviews];
 
   return (
     <section className="py-24 md:py-32 bg-volcanic-light overflow-hidden" ref={ref}>
@@ -86,11 +62,11 @@ const Reviews = () => {
               />
             </svg>
             <span className="font-body text-xs tracking-[0.3em] uppercase text-muted-foreground">
-              Avis Google
+              {t("reviews.label")}
             </span>
           </div>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
-            Ce qu'elles <span className="italic text-primary">disent</span>
+            {t("reviews.title")} <span className="italic text-primary">{t("reviews.titleHighlight")}</span>
           </h2>
         </motion.div>
 
