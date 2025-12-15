@@ -95,7 +95,7 @@ const translations = {
 
     // Reviews
     "reviews.label": "Avis Google",
-    "reviews.title": "Ce qu'elles",
+    "reviews.title": "Ce que les clients",
     "reviews.titleHighlight": "disent",
 
     // Formation
