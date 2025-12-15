@@ -52,10 +52,10 @@ const Navbar = () => {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <a href="https://formationheadspapro.com/" target="_blank" rel="noopener noreferrer" className="font-body text-sm tracking-widest uppercase text-primary hover:text-primary/80 transition-colors duration-300">
+          <a href="https://formationheadspapro.com/" target="_blank" rel="noopener noreferrer" className="font-body tracking-widest uppercase text-primary hover:text-primary/80 transition-colors duration-300 text-xs">
             Académie
           </a>
-          <a href="#soins" className="btn-solid-gold rounded-full">
+          <a href="#soins" className="btn-solid-gold rounded-full text-xs">
             Réserver
           </a>
         </div>
