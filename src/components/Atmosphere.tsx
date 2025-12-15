@@ -124,11 +124,38 @@ const Atmosphere = () => {
         {/* Layout: Text + Partners left, Video right */}
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Left Column: Text + Partners */}
+            {/* Left Column: Video */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
+              className="rounded-2xl overflow-hidden border border-border relative aspect-[4/5]"
+            >
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/environment-spa.mov" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="font-heading text-2xl md:text-3xl text-foreground">
+                  Immersion <span className="italic text-primary">sensorielle</span>
+                </p>
+                <p className="mt-2 text-muted-foreground text-sm font-light">
+                  Lumières tamisées, sons apaisants, parfums envoûtants.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Text + Partners */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col"
             >
               <h3 className="font-heading text-2xl md:text-3xl text-foreground mb-6">
@@ -186,33 +213,6 @@ const Atmosphere = () => {
                     </motion.button>
                   ))}
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column: Video */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="rounded-2xl overflow-hidden border border-border relative aspect-[4/5]"
-            >
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source src="/videos/environment-spa.mov" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="font-heading text-2xl md:text-3xl text-foreground">
-                  Immersion <span className="italic text-primary">sensorielle</span>
-                </p>
-                <p className="mt-2 text-muted-foreground text-sm font-light">
-                  Lumières tamisées, sons apaisants, parfums envoûtants.
-                </p>
               </div>
             </motion.div>
           </div>
