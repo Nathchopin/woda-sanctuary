@@ -58,11 +58,11 @@ const BookingModal = ({ isOpen, onClose, treatmentName }: BookingModalProps) => 
                 </p>
 
                 <a
-                  href="tel:+33612345678"
+                  href="tel:+33666111726"
                   className="btn-solid-gold rounded-full text-lg flex items-center justify-center gap-3 w-full"
                 >
                   <Phone className="w-5 h-5" />
-                  06 12 34 56 78
+                  06 66 11 17 26
                 </a>
 
                 <p className="text-xs text-muted-foreground mt-4">
