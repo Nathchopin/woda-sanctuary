@@ -16,9 +16,9 @@
     --popover: 0 0% 12%;
     --popover-foreground: 38 25% 90%;
 
-    /* Champagne Gold */
-    --primary: 43 62% 52%; /* #D4AF37 */
-    --primary-foreground: 0 0% 10%;
+    /* Warm Gold - matching School Woda Elite */
+    --primary: 45 76% 50%; /* Warmer, more saturated gold */
+    --primary-foreground: 0 0% 8%;
 
     --secondary: 38 15% 20%;
     --secondary-foreground: 38 25% 90%;
@@ -26,8 +26,8 @@
     --muted: 0 0% 15%;
     --muted-foreground: 38 15% 60%;
 
-    --accent: 43 62% 52%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 45 76% 50%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 38 25% 90%;
@@ -38,10 +38,10 @@
 
     --radius: 0.75rem;
 
-    /* Custom design tokens */
-    --gold: 43 62% 52%;
-    --gold-light: 43 62% 65%;
-    --gold-dark: 43 62% 40%;
+    /* Custom design tokens - matching School Woda Elite */
+    --gold: 45 76% 50%;
+    --gold-light: 45 76% 62%;
+    --gold-dark: 45 76% 38%;
     --clay: 38 25% 90%;
     --volcanic: 0 0% 10%;
     --volcanic-light: 0 0% 15%;
