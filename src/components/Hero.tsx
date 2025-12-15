@@ -13,7 +13,8 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/training-hero.mov" type="video/mp4" />
+          <source src="/videos/hero-main.mov" type="video/quicktime" />
+          <source src="/videos/hero-main.mov" type="video/mp4" />
         </video>
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
