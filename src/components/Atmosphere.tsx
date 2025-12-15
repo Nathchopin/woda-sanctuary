@@ -103,7 +103,7 @@ const Atmosphere = () => {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-background" ref={ref}>
+    <section id="experience" className="py-24 md:py-32 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div

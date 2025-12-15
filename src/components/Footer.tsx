@@ -1,7 +1,16 @@
-import { Instagram } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { Instagram, Youtube } from "lucide-react";
+import LegalModal from "./LegalModal";
 
 const Footer = () => {
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
+  const [legalModalType, setLegalModalType] = useState<"mentions" | "cgv">("mentions");
+
+  const openLegalModal = (type: "mentions" | "cgv") => {
+    setLegalModalType(type);
+    setLegalModalOpen(true);
+  };
+
   return (
     <footer id="contact" className="bg-background border-t border-border">
       {/* Main Footer */}
@@ -19,13 +28,22 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/spawoda"
+                href="https://www.instagram.com/spawoda/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@YohaqineChopin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
               </a>
               <a
                 href="https://www.tiktok.com/@spawoda"
@@ -60,33 +78,25 @@ const Footer = () => {
             </h4>
             <div className="space-y-3">
               <a
-                href="https://www.planity.com/spa-woda-head-spa-lyon-69009"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors"
-              >
-                Réserver un soin
-              </a>
-              <a
-                href="https://academie.spawoda.fr"
+                href="https://formationheadspapro.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors"
               >
                 Devenir Praticien
               </a>
-              <a
-                href="#mentions-legales"
-                className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors"
+              <button
+                onClick={() => openLegalModal("mentions")}
+                className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors text-left"
               >
                 Mentions Légales
-              </a>
-              <a
-                href="#cgv"
-                className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors"
+              </button>
+              <button
+                onClick={() => openLegalModal("cgv")}
+                className="block text-muted-foreground text-sm font-light hover:text-primary transition-colors text-left"
               >
                 CGV
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -103,6 +113,13 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* Legal Modal */}
+      <LegalModal
+        isOpen={legalModalOpen}
+        onClose={() => setLegalModalOpen(false)}
+        type={legalModalType}
+      />
     </footer>
   );
 };

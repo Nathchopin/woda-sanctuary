@@ -6,7 +6,6 @@ import Atmosphere from "@/components/Atmosphere";
 import Reviews from "@/components/Reviews";
 import Formation from "@/components/Formation";
 import Footer from "@/components/Footer";
-import AmbientMusic from "@/components/AmbientMusic";
 
 const Index = () => {
   return (
@@ -19,7 +18,6 @@ const Index = () => {
       <Reviews />
       <Formation />
       <Footer />
-      <AmbientMusic />
     </main>
   );
 };
