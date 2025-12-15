@@ -7,8 +7,8 @@ const AmbientMusic = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Zen/Japanese spa ambient music from a free source
-  const musicUrl = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3";
+  // Calm Japanese zen spa ambient music
+  const musicUrl = "https://cdn.pixabay.com/download/audio/2024/11/04/audio_4956b836c7.mp3";
 
   useEffect(() => {
     if (audioRef.current) {

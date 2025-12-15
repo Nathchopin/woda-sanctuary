@@ -13,7 +13,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/hero-spa.mov" type="video/mp4" />
+          <source src="/videos/training-hero.mov" type="video/mp4" />
         </video>
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
@@ -61,9 +61,7 @@ const Hero = () => {
 
         {/* CTA Button */}
         <motion.a
-          href="https://www.planity.com/spa-woda-head-spa-lyon-69009"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#soins"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}

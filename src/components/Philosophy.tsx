@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import portraitYohaqine from "@/assets/portrait-yohaqine.jpg";
 
 const Philosophy = () => {
   const ref = useRef(null);
@@ -11,7 +10,7 @@ const Philosophy = () => {
     <section id="institut" className="py-24 md:py-32 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
+          {/* Video */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -22,11 +21,15 @@ const Philosophy = () => {
               {/* Gold border frame */}
               <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl transform translate-x-4 translate-y-4" />
               <div className="absolute inset-0 bg-gradient-to-br from-volcanic-light to-volcanic rounded-2xl overflow-hidden border border-primary/20">
-                <img
-                  src={portraitYohaqine}
-                  alt="Yohaqîne Chopin - Fondatrice Spa Woda"
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   className="w-full h-full object-cover"
-                />
+                >
+                  <source src="/videos/hero-spa.mov" type="video/mp4" />
+                </video>
                 {/* Subtle overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
               </div>
