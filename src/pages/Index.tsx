@@ -4,6 +4,7 @@ import Philosophy from "@/components/Philosophy";
 import Treatments from "@/components/Treatments";
 import Atmosphere from "@/components/Atmosphere";
 import Reviews from "@/components/Reviews";
+import Formation from "@/components/Formation";
 import Footer from "@/components/Footer";
 import AmbientMusic from "@/components/AmbientMusic";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <Treatments />
       <Atmosphere />
       <Reviews />
+      <Formation />
       <Footer />
       <AmbientMusic />
     </main>

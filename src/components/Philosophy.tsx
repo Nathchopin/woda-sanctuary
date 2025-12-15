@@ -9,15 +9,15 @@ const Philosophy = () => {
   return (
     <section id="institut" className="py-24 md:py-32 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Video */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Video - Made wider */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0">
+            <div className="relative aspect-[4/5] w-full max-w-lg mx-auto lg:mx-0">
               {/* Gold border frame */}
               <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl transform translate-x-4 translate-y-4" />
               <div className="absolute inset-0 bg-gradient-to-br from-volcanic-light to-volcanic rounded-2xl overflow-hidden border border-primary/20">

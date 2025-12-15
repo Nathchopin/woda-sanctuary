@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Clock, AlertCircle, Sparkles } from "lucide-react";
+import { Clock, AlertCircle } from "lucide-react";
 import BookingModal from "./BookingModal";
 
 const treatments = [
@@ -10,16 +10,8 @@ const treatments = [
     description: "Le déroulé complet du Head Spa : accueil & diagnostic, soin du cuir chevelu, massage bien-être, soin du visage, rituel capillaire et finitions beauté.",
     duration: "2h",
     price: "145€",
-    originalPrice: "180€",
-    discount: "-20%",
     highlight: true,
-    isPromo: true,
-  },
-  {
-    name: "Massage Signature Spa Woda",
-    description: "L'Essence du Bien-Être sur Mesure. Un soin entièrement personnalisé qui allie douceur et précision, inspiré de techniques japonaises.",
-    duration: "1h30",
-    price: "120€",
+    badge: "Le plus populaire",
   },
   {
     name: "Massage Crânien & Californien",
@@ -27,7 +19,7 @@ const treatments = [
     duration: "1h30",
     price: "100€",
     highlight: true,
-    badge: "15€ de réduction",
+    badge: "-15€",
   },
   {
     name: "Massage Crânien",
@@ -40,6 +32,12 @@ const treatments = [
     description: "Un modelage doux et enveloppant pour favoriser la relaxation et la reconnexion à soi.",
     duration: "1h",
     price: "85€",
+  },
+  {
+    name: "Massage Signature Spa Woda",
+    description: "L'Essence du Bien-Être sur Mesure. Un soin entièrement personnalisé qui allie douceur et précision, inspiré de techniques japonaises.",
+    duration: "1h30",
+    price: "120€",
   },
   {
     name: "Massage Ayurvédique",
@@ -101,28 +99,15 @@ const Treatments = () => {
               transition={{ duration: 0.6, delay: index * 0.08 }}
               className={`treatment-card flex flex-col h-full relative ${
                 treatment.highlight ? "border-primary/40" : ""
-              } ${treatment.isPromo ? "ring-2 ring-primary/50" : ""}`}
+              }`}
             >
-              {/* Promo Badge */}
-              {treatment.isPromo && (
-                <div className="absolute -top-3 -right-3 bg-primary text-background text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" />
-                  {treatment.discount} OFFRE LIMITÉE
-                </div>
-              )}
-
               {/* Card Header */}
               <div className="flex items-start justify-between mb-4">
                 <h3 className="font-heading text-xl md:text-2xl text-foreground pr-2">
                   {treatment.name}
                 </h3>
-                {treatment.highlight && !treatment.isPromo && (
-                  <span className="text-xs tracking-wider uppercase text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap">
-                    Populaire
-                  </span>
-                )}
                 {treatment.badge && (
-                  <span className="text-xs tracking-wider uppercase text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap">
+                  <span className="text-xs tracking-wider uppercase text-primary bg-primary/10 px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
                     {treatment.badge}
                   </span>
                 )}
@@ -139,16 +124,9 @@ const Treatments = () => {
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">{treatment.duration}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  {treatment.originalPrice && (
-                    <span className="text-muted-foreground line-through text-sm">
-                      {treatment.originalPrice}
-                    </span>
-                  )}
-                  <span className={`font-heading text-2xl ${treatment.isPromo ? "text-primary" : "text-primary"}`}>
-                    {treatment.price}
-                  </span>
-                </div>
+                <span className="font-heading text-2xl text-primary">
+                  {treatment.price}
+                </span>
               </div>
 
               {/* CTA */}

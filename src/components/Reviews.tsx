@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
+import { Star } from "lucide-react";
 
 const reviews = [
   {
@@ -46,26 +46,16 @@ const reviews = [
   },
 ];
 
+// Duplicate reviews for seamless loop
+const duplicatedReviews = [...reviews, ...reviews];
+
 const Reviews = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleCount = 3;
-
-  const next = () => {
-    setCurrentIndex((prev) =>
-      prev + 1 >= reviews.length - visibleCount + 1 ? 0 : prev + 1
-    );
-  };
-
-  const prev = () => {
-    setCurrentIndex((prev) =>
-      prev - 1 < 0 ? reviews.length - visibleCount : prev - 1
-    );
-  };
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="py-24 md:py-32 bg-volcanic-light" ref={ref}>
+    <section className="py-24 md:py-32 bg-volcanic-light overflow-hidden" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -104,90 +94,68 @@ const Reviews = () => {
           </h2>
         </motion.div>
 
-        {/* Reviews Carousel */}
-        <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Buttons */}
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
-            aria-label="Précédent"
+        {/* Auto-scrolling Reviews */}
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <motion.div
+            className="flex gap-6"
+            animate={{
+              x: isPaused ? undefined : [0, -50 * reviews.length + "%"],
+            }}
+            transition={{
+              x: {
+                duration: 40,
+                repeat: Infinity,
+                ease: "linear",
+              },
+            }}
+            style={{ width: "fit-content" }}
           >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
-            aria-label="Suivant"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+            {duplicatedReviews.map((review, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.8) }}
+                className="glass-card rounded-xl p-6 w-[320px] md:w-[380px] flex-shrink-0"
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-primary text-primary"
+                    />
+                  ))}
+                </div>
 
-          {/* Cards Container */}
-          <div className="overflow-hidden px-4">
-            <motion.div
-              className="flex gap-6"
-              animate={{ x: `-${currentIndex * (100 / visibleCount)}%` }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            >
-              {reviews.map((review, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="glass-card rounded-xl p-6 min-w-[calc(100%-2rem)] md:min-w-[calc(33.333%-1rem)] flex-shrink-0"
-                >
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-primary text-primary"
-                      />
-                    ))}
-                  </div>
+                {/* Review Text */}
+                <p className="text-foreground font-light leading-relaxed mb-6 line-clamp-4">
+                  "{review.text}"
+                </p>
 
-                  {/* Review Text */}
-                  <p className="text-foreground font-light leading-relaxed mb-6 line-clamp-4">
-                    "{review.text}"
-                  </p>
-
-                  {/* Reviewer */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                        <span className="text-primary font-heading text-lg">
-                          {review.name.charAt(0)}
-                        </span>
-                      </div>
-                      <span className="text-sm text-foreground">
-                        {review.name}
+                {/* Reviewer */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                      <span className="text-primary font-heading text-lg">
+                        {review.name.charAt(0)}
                       </span>
                     </div>
-                    <span className="text-xs text-muted-foreground">
-                      {review.date}
+                    <span className="text-sm text-foreground">
+                      {review.name}
                     </span>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
-            {reviews.slice(0, reviews.length - visibleCount + 1).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === index
-                    ? "bg-primary w-6"
-                    : "bg-foreground/20 hover:bg-foreground/40"
-                }`}
-                aria-label={`Aller à l'avis ${index + 1}`}
-              />
+                  <span className="text-xs text-muted-foreground">
+                    {review.date}
+                  </span>
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
