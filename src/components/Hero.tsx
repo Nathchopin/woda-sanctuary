@@ -11,7 +11,7 @@ const Hero = () => {
           muted
           loop
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-[0.92] origin-center"
         >
           <source src="/videos/hero-video.mov" type="video/quicktime" />
           <source src="/videos/hero-video.mov" type="video/mp4" />
