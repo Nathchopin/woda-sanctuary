@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
@@ -61,14 +61,44 @@ const Navbar = () => {
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
           {/* Language Toggle */}
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-1.5 font-body tracking-widest uppercase text-foreground/80 hover:text-primary transition-colors duration-300 text-xs"
-            aria-label="Toggle language"
-          >
-            <Globe className="w-4 h-4" />
-            {language.toUpperCase()}
-          </button>
+          <div className="relative flex items-center bg-background/20 backdrop-blur-sm rounded-full p-0.5 border border-border/30">
+            <button
+              onClick={() => setLanguage("fr")}
+              className={`relative px-3 py-1 text-xs font-body tracking-wider uppercase transition-all duration-300 rounded-full ${
+                language === "fr"
+                  ? "text-background"
+                  : "text-foreground/60 hover:text-foreground"
+              }`}
+              aria-label="Switch to French"
+            >
+              {language === "fr" && (
+                <motion.div
+                  layoutId="language-pill"
+                  className="absolute inset-0 bg-primary rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                />
+              )}
+              <span className="relative z-10">FR</span>
+            </button>
+            <button
+              onClick={() => setLanguage("en")}
+              className={`relative px-3 py-1 text-xs font-body tracking-wider uppercase transition-all duration-300 rounded-full ${
+                language === "en"
+                  ? "text-background"
+                  : "text-foreground/60 hover:text-foreground"
+              }`}
+              aria-label="Switch to English"
+            >
+              {language === "en" && (
+                <motion.div
+                  layoutId="language-pill"
+                  className="absolute inset-0 bg-primary rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                />
+              )}
+              <span className="relative z-10">EN</span>
+            </button>
+          </div>
           <a
             href="https://formationheadspapro.com/"
             target="_blank"
@@ -114,13 +144,44 @@ const Navbar = () => {
               ))}
               <div className="border-t border-border pt-4 mt-2 flex flex-col gap-3">
                 {/* Language Toggle Mobile */}
-                <button
-                  onClick={toggleLanguage}
-                  className="flex items-center gap-2 font-body text-sm tracking-widest uppercase text-foreground/80 hover:text-primary transition-colors"
-                >
-                  <Globe className="w-4 h-4" />
-                  {language === "fr" ? "English" : "Français"}
-                </button>
+                <div className="flex items-center gap-2">
+                  <div className="relative flex items-center bg-background/20 backdrop-blur-sm rounded-full p-0.5 border border-border/30">
+                    <button
+                      onClick={() => { setLanguage("fr"); }}
+                      className={`relative px-3 py-1.5 text-xs font-body tracking-wider uppercase transition-all duration-300 rounded-full ${
+                        language === "fr"
+                          ? "text-background"
+                          : "text-foreground/60"
+                      }`}
+                    >
+                      {language === "fr" && (
+                        <motion.div
+                          layoutId="language-pill-mobile"
+                          className="absolute inset-0 bg-primary rounded-full"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                        />
+                      )}
+                      <span className="relative z-10">FR</span>
+                    </button>
+                    <button
+                      onClick={() => { setLanguage("en"); }}
+                      className={`relative px-3 py-1.5 text-xs font-body tracking-wider uppercase transition-all duration-300 rounded-full ${
+                        language === "en"
+                          ? "text-background"
+                          : "text-foreground/60"
+                      }`}
+                    >
+                      {language === "en" && (
+                        <motion.div
+                          layoutId="language-pill-mobile"
+                          className="absolute inset-0 bg-primary rounded-full"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                        />
+                      )}
+                      <span className="relative z-10">EN</span>
+                    </button>
+                  </div>
+                </div>
                 <a
                   href="https://formationheadspapro.com/"
                   target="_blank"
