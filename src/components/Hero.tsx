@@ -73,11 +73,12 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      <motion.a
+        href="#institut"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
       >
         <span className="font-body text-xs tracking-widest uppercase text-foreground/50">
           Découvrir
@@ -88,7 +89,7 @@ const Hero = () => {
         >
           <ChevronDown className="w-5 h-5 text-primary" />
         </motion.div>
-      </motion.div>
+      </motion.a>
     </section>
   );
 };
