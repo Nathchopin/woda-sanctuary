@@ -66,7 +66,7 @@ const BookingModal = ({ isOpen, onClose, treatmentName }: BookingModalProps) => 
                 </a>
 
                 <p className="text-xs text-muted-foreground mt-4">
-                  Du lundi au samedi, 9h - 19h
+                  Du mardi au samedi, 9h - 19h
                 </p>
               </div>
             </div>
