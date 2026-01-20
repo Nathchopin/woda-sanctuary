@@ -30,7 +30,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/spawoda/"
+                href="https://www.instagram.com/spawodaheadspalyon?igsh=MXZ3YnZpbTZ0MzBkcw%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground hover:text-primary transition-colors"
