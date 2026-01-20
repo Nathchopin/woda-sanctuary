@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube, Phone, Mail } from "lucide-react";
 import LegalModal from "./LegalModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -67,7 +67,14 @@ const Footer = () => {
               {t("footer.contact")}
             </h4>
             <div className="space-y-3 text-muted-foreground text-sm font-light">
-              <p>Spa Woda</p>
+              <a href="tel:+33666111726" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Phone className="w-4 h-4" />
+                06 66 11 17 26
+              </a>
+              <a href="mailto:spawoda@outlook.fr" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Mail className="w-4 h-4" />
+                spawoda@outlook.fr
+              </a>
               <p>Lyon 69009</p>
               <p>France</p>
             </div>
