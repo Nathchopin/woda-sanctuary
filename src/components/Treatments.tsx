@@ -15,7 +15,7 @@ const Treatments = () => {
       nameKey: "treatment.rituel.name",
       descKey: "treatment.rituel.desc",
       duration: "2h",
-      price: "150€",
+      price: "160€",
       highlight: true,
       badgeKey: "treatments.mostPopular",
     },
