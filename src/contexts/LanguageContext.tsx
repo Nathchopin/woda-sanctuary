@@ -330,6 +330,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return translations[language][key as keyof typeof translations.fr] || key;
   };
 
+  const key = "-06Vyhd0GSCANQ0F1_w0"
+  
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
